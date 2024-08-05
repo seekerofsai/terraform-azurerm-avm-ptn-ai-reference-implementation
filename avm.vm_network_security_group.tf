@@ -1,37 +1,37 @@
-module "ba_network_security_group" {
+module "vm_network_security_group" {
   source              = "Azure/avm-res-network-networksecuritygroup/azurerm"
   version             = "~> 0.2.0"
   resource_group_name = data.azurerm_resource_group.base.name
-  name                = local.bastion_network_security_group_name
+  name                = local.vm_network_security_group_name
   location            = data.azurerm_resource_group.base.location
 
   security_rules = {
-    no_internet = {
-      access                     = "Deny"
-      direction                  = "Outbound"
-      name                       = "block-internet-traffic"
-      priority                   = 100
-      protocol                   = "*"
-      destination_address_prefix = "Internet"
-      destination_port_range     = "*"
-      source_address_prefix      = "*"
-      source_port_range          = "*"
-    }
-     allow_bastion_management = {
+    Allow-AzureBastion-RDP = {
       access                     = "Allow"
       direction                  = "Inbound"
-      name                       = "allow_bastion_management"
+      name                       = "Allow-AzureBastion-RDP"
       priority                   = 100
       protocol                   = "Tcp"
-      destination_address_prefix = "*"
-      destination_port_range     = "443"
-      source_address_prefix      = "AzureCloud"
+      destination_address_prefix = "Internet"
+      destination_port_range     = "3389"
+      source_address_prefix      = "AzureBastion"
       source_port_range          = "*"
     }
-   deny_all_inbound = {
+    Allow-AzureBastion-SSH = {
+      access                     = "Allow"
+      direction                  = "Inbound"
+      name                       = "Allow-AzureBastion-SSH"
+      priority                   = 110
+      protocol                   = "Tcp"
+      destination_address_prefix = "Internet"
+      destination_port_range     = "22"
+      source_address_prefix      = "AzureBastion"
+      source_port_range          = "*"
+    }
+     Deny-All-Inbound = {
       access                     = "Deny"
       direction                  = "Inbound"
-      name                       = "deny_all_inbound"
+      name                       = "Deny-All-Inbound"
       priority                   = 4096
       protocol                   = "*"
       destination_address_prefix = "*"
@@ -39,28 +39,28 @@ module "ba_network_security_group" {
       source_address_prefix      = "*"
       source_port_range          = "*"
     }
-   allow_internet_outbound = {
+    Allow-Internet-Outbound = {
       access                     = "Allow"
       direction                  = "Outbound"
-      name                       = "allow_internet_outbound"
+      name                       = "Allow-Internet-Outbound"
       priority                   = 100
       protocol                   = "*"
       destination_address_prefix = "Internet"
       destination_port_range     = "*"
       source_address_prefix      = "*"
       source_port_range          = "*"
-    } 
-    deny_all_outbound = {
+    }
+    Deny-All-Outbound = {
       access                     = "Deny"
       direction                  = "Outbound"
-      name                       = "deny_all_outbound"
+      name                       = "Deny-Internet-Outbound"
       priority                   = 4096
       protocol                   = "*"
       destination_address_prefix = "*"
       destination_port_range     = "*"
       source_address_prefix      = "*"
       source_port_range          = "*"
-    } 
+    }
   }
 
   diagnostic_settings = { for k, v in local.diagnostic_settings : k => {
