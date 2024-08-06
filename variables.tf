@@ -1,3 +1,9 @@
+variable "location" {
+  type        = string
+  description = "The location/region where the resources will be deployed."
+  nullable    = false
+}
+
 variable "name" {
   type        = string
   description = "The name of the this resource."
@@ -84,12 +90,6 @@ variable "role_assignments" {
   nullable    = false
 }
 
-variable "suffix" {
-  type        = string
-  default     = ""
-  description = "A suffix to append to the resource names."
-}
-
 variable "tags" {
   type        = map(string)
   default     = null
@@ -106,9 +106,4 @@ variable "vnet_address_spaces" {
   type        = list(string)
   default     = ["10.1.0.0/16"]
   description = "The address space that is used the virtual network"
-}
-
-variable "location" {
-  type        = string
-  description = "The location/region where the resources will be deployed."
 }

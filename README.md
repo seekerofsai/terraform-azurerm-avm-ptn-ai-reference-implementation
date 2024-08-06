@@ -26,7 +26,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.7)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.71)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (3.112)
 
 - <a name="requirement_modtm"></a> [modtm](#requirement\_modtm) (~> 0.3)
 
@@ -36,14 +36,14 @@ The following requirements are needed by this module:
 
 The following resources are used by this module:
 
-- [azurerm_management_lock.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock) (resource)
-- [azurerm_public_ip.bastion_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) (resource)
-- [azurerm_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_management_lock.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.112/docs/resources/management_lock) (resource)
+- [azurerm_public_ip.bastion_ip](https://registry.terraform.io/providers/hashicorp/azurerm/3.112/docs/resources/public_ip) (resource)
+- [azurerm_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.112/docs/resources/role_assignment) (resource)
 - [modtm_telemetry.telemetry](https://registry.terraform.io/providers/Azure/modtm/latest/docs/resources/telemetry) (resource)
 - [random_uuid.telemetry](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid) (resource)
-- [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) (data source)
-- [azurerm_client_config.telemetry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) (data source)
-- [azurerm_resource_group.base](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) (data source)
+- [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.112/docs/data-sources/client_config) (data source)
+- [azurerm_client_config.telemetry](https://registry.terraform.io/providers/hashicorp/azurerm/3.112/docs/data-sources/client_config) (data source)
+- [azurerm_resource_group.base](https://registry.terraform.io/providers/hashicorp/azurerm/3.112/docs/data-sources/resource_group) (data source)
 - [modtm_module_source.telemetry](https://registry.terraform.io/providers/Azure/modtm/latest/docs/data-sources/module_source) (data source)
 
 <!-- markdownlint-disable MD013 -->
@@ -51,11 +51,11 @@ The following resources are used by this module:
 
 The following input variables are required:
 
-### <a name="input_address_space_size"></a> [address\_space\_size](#input\_address\_space\_size)
+### <a name="input_location"></a> [location](#input\_location)
 
-Description: The address space that is used the virtual network
+Description: The location/region where the resources will be deployed.
 
-Type: `number`
+Type: `string`
 
 ### <a name="input_name"></a> [name](#input\_name)
 
@@ -161,14 +161,6 @@ map(object({
 
 Default: `{}`
 
-### <a name="input_suffix"></a> [suffix](#input\_suffix)
-
-Description: A suffix to append to the resource names.
-
-Type: `string`
-
-Default: `""`
-
 ### <a name="input_tags"></a> [tags](#input\_tags)
 
 Description: A map of tags to add to all resources
@@ -233,6 +225,12 @@ Source: Azure/avm-res-network-bastionhost/azurerm
 
 Version: 0.3.0
 
+### <a name="module_ba_network_security_group"></a> [ba\_network\_security\_group](#module\_ba\_network\_security\_group)
+
+Source: Azure/avm-res-network-networksecuritygroup/azurerm
+
+Version: ~> 0.2.0
+
 ### <a name="module_key_vault"></a> [key\_vault](#module\_key\_vault)
 
 Source: Azure/avm-res-keyvault-vault/azurerm
@@ -245,13 +243,7 @@ Source: Azure/avm-res-operationalinsights-workspace/azurerm
 
 Version: ~> 0.1
 
-### <a name="module_naming"></a> [naming](#module\_naming)
-
-Source: Azure/naming/azurerm
-
-Version: ~> 0.4.1
-
-### <a name="module_network_security_group"></a> [network\_security\_group](#module\_network\_security\_group)
+### <a name="module_pe_network_security_group"></a> [pe\_network\_security\_group](#module\_pe\_network\_security\_group)
 
 Source: Azure/avm-res-network-networksecuritygroup/azurerm
 
@@ -284,6 +276,12 @@ Version: 0.2.1
 ### <a name="module_virtual_network"></a> [virtual\_network](#module\_virtual\_network)
 
 Source: Azure/avm-res-network-virtualnetwork/azurerm
+
+Version: ~> 0.2.0
+
+### <a name="module_vm_network_security_group"></a> [vm\_network\_security\_group](#module\_vm\_network\_security\_group)
+
+Source: Azure/avm-res-network-networksecuritygroup/azurerm
 
 Version: ~> 0.2.0
 
