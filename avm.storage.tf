@@ -17,7 +17,7 @@ module "private_dns_storage" {
 module "storage_account" {
 
   source  = "Azure/avm-res-storage-storageaccount/azurerm"
-  version = "0.2.1"
+  version = "0.2.2"
 
   account_replication_type      = "LRS"
   account_tier                  = "Standard"

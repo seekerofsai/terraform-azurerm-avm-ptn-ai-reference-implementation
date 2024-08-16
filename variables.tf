@@ -54,6 +54,17 @@ If it is set to false, then no telemetry will be collected.
 DESCRIPTION
 }
 
+variable "explicit_outbound_method" {
+  type        = string
+  default     = "NAT"
+  description = "The method to enable outbound internet access from jumpbox to Azure Machine Learning/AI Studio"
+
+  validation {
+    condition     = contains(["NAT"], var.explicit_outbound_method)
+    error_message = "Valid values for var: explicit_outbound_method are NAT. Future support will include: UDR, LoadBalancer, PublicIP, or Firewall."
+  }
+}
+
 variable "jumpbox" {
   type = object({
     create  = bool

@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.112"
+      version = ">= 3.114.0, < 4.0.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -38,6 +38,7 @@ resource "random_integer" "region_index" {
 
 resource "random_string" "name" {
   length  = 5
+  numeric = false
   special = false
   upper   = false
 }
