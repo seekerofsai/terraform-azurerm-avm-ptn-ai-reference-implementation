@@ -70,7 +70,7 @@ variable "jumpbox" {
     create  = bool
     name    = optional(string, "jumpbox")
     os_type = optional(string, "Windows")
-    size    = optional(string, "Standard_D2s_v3")
+    size    = optional(string, "Standard_D4_v3")
     zone    = optional(string, "1")
     image_ref = optional(object({
       publisher = string
