@@ -16,8 +16,8 @@ locals {
 # Diagnostic settings
 locals {
   diagnostic_settings = {
-    sendToLogAnalytics = {
-      name                  = "sendToLogAnalytics"
+    defaultDiagnosticSettings = {
+      name                  = "Send to Log Analytics (AllLogs, AllMetrics)"
       workspace_resource_id = module.log_analytics_workspace.resource.id
     }
   }
