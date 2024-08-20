@@ -1,7 +1,14 @@
 <!-- BEGIN_TF_DOCS -->
 # Default example
 
-This deploys the module in its simplest form.
+Deploys the environment with a jumpbox to enable access to environment. The username is `azureuser` and the password is generated and can be found in the tfstate file or it can be reset from the portal.
+
+An easy way to get a list of available VM sizes in a specific region and availability zone:
+
+```sh
+# The following is a simple command will list Standard_D VM sizes and have no restrictions in southcentralus region
+az vm list-skus -l southcentralus --size Standard_D -o table | grep None
+```
 
 ```hcl
 terraform {
@@ -57,7 +64,7 @@ module "naming" {
 
 # This is required for resource modules
 resource "azurerm_resource_group" "this" {
-  location = "uksouth"
+  location = "southcentralus"
   name     = module.naming.resource_group.name_unique
 }
 
@@ -68,7 +75,10 @@ module "test" {
   resource_group_name = azurerm_resource_group.this.name
   enable_telemetry    = var.enable_telemetry
   jumpbox = {
-    create = true
+    create                         = true
+    size                           = var.jumpbox.size
+    zone                           = var.jumpbox.zone
+    accelerated_networking_enabled = var.jumpbox.accelerated_networking_enabled
   }
   tags = {
     environment = "test"
@@ -115,6 +125,30 @@ If it is set to false, then no telemetry will be collected.
 Type: `bool`
 
 Default: `true`
+
+### <a name="input_jumpbox"></a> [jumpbox](#input\_jumpbox)
+
+Description: This variable configures the jumpbox for this example
+
+Type:
+
+```hcl
+object({
+    size                           = string,
+    zone                           = number,
+    accelerated_networking_enabled = bool
+  })
+```
+
+Default:
+
+```json
+{
+  "accelerated_networking_enabled": true,
+  "size": "Standard_D4as_v4",
+  "zone": 3
+}
+```
 
 ## Outputs
 

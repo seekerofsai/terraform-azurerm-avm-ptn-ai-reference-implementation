@@ -67,11 +67,12 @@ variable "explicit_outbound_method" {
 
 variable "jumpbox" {
   type = object({
-    create  = bool
-    name    = optional(string, "jumpbox")
-    os_type = optional(string, "Windows")
-    size    = optional(string, "Standard_D4_v3")
-    zone    = optional(string, "1")
+    create                         = bool
+    name                           = optional(string, "jumpbox")
+    os_type                        = optional(string, "Windows")
+    size                           = optional(string, "Standard_D4s_v3")
+    zone                           = optional(string, "1")
+    accelerated_networking_enabled = optional(bool, false)
     image_ref = optional(object({
       publisher = string
       offer     = string
@@ -87,7 +88,7 @@ variable "jumpbox" {
   default = {
     create = false
   }
-  description = "This creates a jumpbox if configured with jumpbox.create = true and defaults to a Windows machine."
+  description = "This creates a jumpbox if configured with jumpbox.create = true and defaults to a Windows machine. It is recommended to use a VM size with at least 16GB."
 }
 
 variable "key_vault_name" {

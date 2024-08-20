@@ -40,7 +40,8 @@ module "jumpbox" {
 
   network_interfaces = {
     network_interface_1 = {
-      name = "${var.jumpbox.name}-nic"
+      name                           = "${var.jumpbox.name}-nic"
+      accelerated_networking_enabled = var.jumpbox.accelerated_networking_enabled
       ip_configurations = {
         ip_configuration_1 = {
           name                          = "${var.jumpbox.name}-nic-ipconfig1"
@@ -49,6 +50,7 @@ module "jumpbox" {
       }
     }
   }
+
 
   tags  = var.tags
   count = var.jumpbox.create ? 1 : 0

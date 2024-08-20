@@ -41,10 +41,35 @@ module "ai_reference_implementation" {
 
   resource_group_name = "<your_resource_group>"
   location            = "<your_location>"
+  jumpbox = {
+    create = true
+  }
 }
 ```
 
-This example sets up the AI Reference Implementation with all default resources.
+This example sets up the AI Reference Implementation with all default resources and a jumpbox so you can access your workspace from the virtual network. The username is `azureuser` and the password is generated and can be found in the tfstate file but you may need to reset from the portal. The following default configuration is used for the jumpbox VM creation if enabled and can be updated for your needs.
+
+If you need an easy way to get a list of available VM sizes in a specific region and availability zone:
+
+```sh
+# The following is a simple command will list Standard_D VM sizes and have no restrictions in southcentralus region
+az vm list-skus -l southcentralus --size Standard_D -o table | grep None
+```
+
+```
+{
+  os_type = "Windows"
+  size = "Standard_D4s_v3"
+  zone = "1"
+  accelerated_networking_enabled = false
+  image_ref = {
+    publisher = "microsoftwindowsdesktop"
+    offer     = "windows-11"
+    sku       = "win11-22h2-ent"
+    version   = "latest"
+  }
+}    
+```
 
 ### Use Cases
 

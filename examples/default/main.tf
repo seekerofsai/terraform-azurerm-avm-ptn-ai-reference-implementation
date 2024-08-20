@@ -51,7 +51,7 @@ module "naming" {
 
 # This is required for resource modules
 resource "azurerm_resource_group" "this" {
-  location = "uksouth"
+  location = "southcentralus"
   name     = module.naming.resource_group.name_unique
 }
 
@@ -62,7 +62,10 @@ module "test" {
   resource_group_name = azurerm_resource_group.this.name
   enable_telemetry    = var.enable_telemetry
   jumpbox = {
-    create = true
+    create                         = true
+    size                           = var.jumpbox.size
+    zone                           = var.jumpbox.zone
+    accelerated_networking_enabled = var.jumpbox.accelerated_networking_enabled
   }
   tags = {
     environment = "test"
