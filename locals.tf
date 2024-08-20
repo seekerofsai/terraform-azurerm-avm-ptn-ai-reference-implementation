@@ -11,7 +11,7 @@ locals {
   resource_group_name                 = length(var.resource_group_name) > 0 ? var.resource_group_name : replace("rg-${var.name}", "/[^a-zA-Z0-9-]/", "")
   storage_account_name                = length(var.storage_account_name) > 0 ? var.storage_account_name : replace("sa${var.name}", "/[^a-zA-Z0-9-]/", "")
   virtual_network_name                = length(var.virtual_network_name) > 0 ? var.virtual_network_name : replace("vnet${var.name}", "/[^a-zA-Z0-9-]/", "")
-  vm_network_security_group_name      = length(var.vm_network_security_group_name) > 0 ? var.vm_network_security_group_name : replace("vm-nsg${var.name}", "/[^a-zA-Z0-9-]/", "")
+  vm_network_security_group_name      = length(var.vm_network_security_group.name) > 0 ? var.vm_network_security_group.name : replace("vm-nsg${var.name}", "/[^a-zA-Z0-9-]/", "")
 }
 # Diagnostic settings
 locals {

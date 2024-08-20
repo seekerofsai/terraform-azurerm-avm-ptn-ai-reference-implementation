@@ -176,68 +176,7 @@ module "vm_network_security_group" {
   name                = local.vm_network_security_group_name
   location            = var.location
 
-  security_rules = {
-    AllowAzureBastion = {
-      access                     = "Allow"
-      direction                  = "Inbound"
-      name                       = "Allow-AzureBastion"
-      priority                   = 100
-      protocol                   = "*"
-      destination_address_prefix = "VirtualNetwork"
-      destination_port_ranges    = ["3389", "22"]
-      source_address_prefix      = "VirtualNetwork"
-      source_port_range          = "*"
-    }
-
-    AllowStudioOutbound = {
-      access                     = "Allow"
-      direction                  = "Outbound"
-      name                       = "Allow-Studio-Outbound"
-      priority                   = 100
-      protocol                   = "*"
-      destination_address_prefix = "AzureFrontDoor.Frontend"
-      destination_port_range     = "443"
-      source_address_prefix      = "*"
-      source_port_range          = "*"
-    }
-
-    AllowADOutbound = {
-      access                     = "Allow"
-      direction                  = "Outbound"
-      name                       = "Allow-AD-Outbound"
-      priority                   = 110
-      protocol                   = "*"
-      destination_address_prefix = "AzureActiveDirectory"
-      destination_port_ranges    = ["80", "443"]
-      source_address_prefix      = "*"
-      source_port_range          = "*"
-    }
-
-    AllowARMOutbound = {
-      access                     = "Allow"
-      direction                  = "Outbound"
-      name                       = "Allow-ARM-Outbound"
-      priority                   = 120
-      protocol                   = "*"
-      destination_address_prefix = "AzureResourceManager"
-      destination_port_range     = "*"
-      source_address_prefix      = "*"
-      source_port_range          = "*"
-    }
-
-    DenyInternetOutbound = {
-      access                     = "Deny"
-      direction                  = "Outbound"
-      name                       = "Deny-Internet-Outbound"
-      priority                   = 1000
-      protocol                   = "*"
-      destination_address_prefix = "Internet"
-      destination_port_range     = "*"
-      source_address_prefix      = "*"
-      source_port_range          = "*"
-    }
-
-  }
+  security_rules = var.vm_network_security_group.security_rules
 
   diagnostic_settings = { for k, v in local.diagnostic_settings : k => {
     name                  = v.name

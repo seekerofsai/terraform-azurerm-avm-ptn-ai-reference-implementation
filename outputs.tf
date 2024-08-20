@@ -3,7 +3,11 @@
 output "resource" {
   description = "This is the full output for the resource."
   value = {
-    resource_group = data.azurerm_resource_group.base
+    resource_group     = data.azurerm_resource_group.base
+    virtual_network    = module.virtual_network
+    container_registry = module.avm_res_containerregistry_registry
+    key_vault          = module.key_vault
+    nat_gateway        = length(module.natgateway) == 0 ? null : module.natgateway[0].resource
   }
 }
 

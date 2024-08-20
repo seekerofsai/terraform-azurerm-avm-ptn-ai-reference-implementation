@@ -23,6 +23,10 @@ module "key_vault" {
   tenant_id                     = data.azurerm_client_config.current.tenant_id
   public_network_access_enabled = false
 
+  network_acls = {
+    bypass = "AzureServices"
+  }
+
   private_endpoints = {
     primary = {
       subnet_resource_id            = module.virtual_network.subnets["private_endpoints"].resource_id
