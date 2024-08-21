@@ -50,6 +50,20 @@ variable "azure_bastion_subnet_address_spaces" {
   description = "The address space that is used for the Azure Bastion subnet"
 }
 
+variable "bastion_copy_paste_enabled" {
+  type        = bool
+  default     = true
+  description = "Specifies whether copy-paste functionality is enabled for the Azure Bastion Host."
+  nullable    = false
+}
+
+variable "bastion_file_copy_enabled" {
+  type        = bool
+  default     = false
+  description = "Specifies whether file copy functionality is enabled for the Azure Bastion Host."
+  nullable    = false
+}
+
 variable "bastion_name" {
   type        = string
   default     = ""
@@ -60,6 +74,28 @@ variable "bastion_network_security_group_name" {
   type        = string
   default     = ""
   description = "The name of the Network Security Group for the Azure Bastion subnet. If not provided, a name will be generated."
+}
+
+variable "bastion_sku" {
+  type        = string
+  default     = "Standard"
+  description = <<DESCRIPTION
+The SKU of the Azure Bastion Host.
+Valid values are 'Basic', 'Standard'.
+DESCRIPTION
+  nullable    = false
+
+  validation {
+    condition     = can(regex("^(Basic|Standard)$", var.bastion_sku))
+    error_message = "The SKU must be either 'Basic', 'Standard'"
+  }
+}
+
+variable "bastion_tunneling_enabled" {
+  type        = bool
+  default     = true
+  description = "Specifies whether tunneling functionality is enabled for the Azure Bastion Host."
+  nullable    = false
 }
 
 variable "container_registry_name" {

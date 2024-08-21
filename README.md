@@ -216,6 +216,22 @@ Default:
 ]
 ```
 
+### <a name="input_bastion_copy_paste_enabled"></a> [bastion\_copy\_paste\_enabled](#input\_bastion\_copy\_paste\_enabled)
+
+Description: Specifies whether copy-paste functionality is enabled for the Azure Bastion Host.
+
+Type: `bool`
+
+Default: `true`
+
+### <a name="input_bastion_file_copy_enabled"></a> [bastion\_file\_copy\_enabled](#input\_bastion\_file\_copy\_enabled)
+
+Description: Specifies whether file copy functionality is enabled for the Azure Bastion Host.
+
+Type: `bool`
+
+Default: `false`
+
 ### <a name="input_bastion_name"></a> [bastion\_name](#input\_bastion\_name)
 
 Description: The name of the Azure Bastion resource. if not provided, a name will be generated.
@@ -231,6 +247,23 @@ Description: The name of the Network Security Group for the Azure Bastion subnet
 Type: `string`
 
 Default: `""`
+
+### <a name="input_bastion_sku"></a> [bastion\_sku](#input\_bastion\_sku)
+
+Description: The SKU of the Azure Bastion Host.  
+Valid values are 'Basic', 'Standard'.
+
+Type: `string`
+
+Default: `"Standard"`
+
+### <a name="input_bastion_tunneling_enabled"></a> [bastion\_tunneling\_enabled](#input\_bastion\_tunneling\_enabled)
+
+Description: Specifies whether tunneling functionality is enabled for the Azure Bastion Host.
+
+Type: `bool`
+
+Default: `true`
 
 ### <a name="input_container_registry_name"></a> [container\_registry\_name](#input\_container\_registry\_name)
 
