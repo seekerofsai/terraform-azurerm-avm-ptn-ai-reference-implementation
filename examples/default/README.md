@@ -68,6 +68,8 @@ resource "azurerm_resource_group" "this" {
   name     = module.naming.resource_group.name_unique
 }
 
+data "azurerm_client_config" "current" {}
+
 module "test" {
   source              = "../../"
   location            = azurerm_resource_group.this.location
@@ -84,7 +86,9 @@ module "test" {
     environment = "test"
     cicd        = "terraform"
   }
-  depends_on = [azurerm_resource_group.this]
+  # The current user will be added as an admin user to the AKV
+  akv_secret_admin_users = [data.azurerm_client_config.current.object_id]
+  depends_on             = [azurerm_resource_group.this]
 }
 ```
 
@@ -106,6 +110,7 @@ The following resources are used by this module:
 - [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
 - [random_integer.region_index](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) (resource)
 - [random_string.name](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) (resource)
+- [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) (data source)
 
 <!-- markdownlint-disable MD013 -->
 ## Required Inputs

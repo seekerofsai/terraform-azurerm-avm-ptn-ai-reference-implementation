@@ -55,6 +55,8 @@ resource "azurerm_resource_group" "this" {
   name     = module.naming.resource_group.name_unique
 }
 
+data "azurerm_client_config" "current" {}
+
 module "test" {
   source              = "../../"
   location            = azurerm_resource_group.this.location
@@ -71,5 +73,7 @@ module "test" {
     environment = "test"
     cicd        = "terraform"
   }
-  depends_on = [azurerm_resource_group.this]
+  # The current user will be added as an admin user to the AKV
+  akv_secret_admin_users = [data.azurerm_client_config.current.object_id]
+  depends_on             = [azurerm_resource_group.this]
 }

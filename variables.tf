@@ -20,6 +20,30 @@ variable "resource_group_name" {
   description = "The resource group where the resources will be deployed."
 }
 
+variable "adlsgen_data_contrib_users" {
+  type        = list(string)
+  default     = []
+  description = "List of user object ids to add to the ADLSgen Data Contributor group"
+}
+
+variable "akv_secret_admin_users" {
+  type        = list(string)
+  default     = []
+  description = "List of user object ids to add to the AKV Secret Admin group"
+}
+
+variable "aml_workspace_ds_users" {
+  type        = list(string)
+  default     = []
+  description = "List of user object ids to add to the AML Workspace DS group"
+}
+
+variable "aml_workspace_ml_operator_users" {
+  type        = list(string)
+  default     = []
+  description = "List of user object ids to add to the AML Workspace ML Operator group"
+}
+
 variable "azure_bastion_subnet_address_spaces" {
   type        = list(string)
   default     = ["10.1.3.0/24"]
@@ -169,10 +193,22 @@ variable "role_assignments" {
   nullable    = false
 }
 
+variable "sql_storage_external_users" {
+  type        = list(string)
+  default     = []
+  description = "List of user object ids to add to the SQL storage external users group"
+}
+
 variable "storage_account_name" {
   type        = string
   default     = ""
   description = "The name of the Azure Storage Account. If not provided, a name will be generated."
+}
+
+variable "storage_mvnet_users" {
+  type        = list(string)
+  default     = []
+  description = "List of user object ids to add to the storage mvnet users group"
 }
 
 variable "tags" {

@@ -101,6 +101,8 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.7)
 
+- <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) (>= 2.53, < 3.0)
+
 - <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.114.0, < 4.0.0)
 
 - <a name="requirement_modtm"></a> [modtm](#requirement\_modtm) (~> 0.3)
@@ -111,11 +113,29 @@ The following requirements are needed by this module:
 
 The following resources are used by this module:
 
+- [azuread_group.akv_secret_admin](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) (resource)
+- [azuread_group.aml_workspace_ds](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) (resource)
+- [azuread_group.aml_workspace_ml_operator](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) (resource)
+- [azuread_group.user_adlsgen_data_contrib](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) (resource)
+- [azuread_group.user_sql_storage_external](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) (resource)
+- [azuread_group.user_storage_mvnet](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) (resource)
+- [azuread_group_member.akv_secret_admin](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
+- [azuread_group_member.aml_workspace_ds](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
+- [azuread_group_member.aml_workspace_ml_operator](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
+- [azuread_group_member.user_adlsgen_data_contrib](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
+- [azuread_group_member.user_sql_storage_external](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
+- [azuread_group_member.user_storage_mvnet](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
 - [azurerm_management_lock.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock) (resource)
 - [azurerm_monitor_diagnostic_setting.diag_setting_resource_storage](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) (resource)
 - [azurerm_monitor_diagnostic_setting.diag_setting_resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) (resource)
 - [azurerm_public_ip.bastion_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) (resource)
+- [azurerm_role_assignment.akv_secret_admin](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.aml_workspace_ds](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.aml_workspace_ml_operator](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.user_adlsgen_data_contrib](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.user_sql_storage_external](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
+- [azurerm_role_assignment.user_storage_mvnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [modtm_telemetry.telemetry](https://registry.terraform.io/providers/Azure/modtm/latest/docs/resources/telemetry) (resource)
 - [random_uuid.telemetry](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid) (resource)
 - [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) (data source)
@@ -149,6 +169,38 @@ Type: `string`
 ## Optional Inputs
 
 The following input variables are optional (have default values):
+
+### <a name="input_adlsgen_data_contrib_users"></a> [adlsgen\_data\_contrib\_users](#input\_adlsgen\_data\_contrib\_users)
+
+Description: List of user object ids to add to the ADLSgen Data Contributor group
+
+Type: `list(string)`
+
+Default: `[]`
+
+### <a name="input_akv_secret_admin_users"></a> [akv\_secret\_admin\_users](#input\_akv\_secret\_admin\_users)
+
+Description: List of user object ids to add to the AKV Secret Admin group
+
+Type: `list(string)`
+
+Default: `[]`
+
+### <a name="input_aml_workspace_ds_users"></a> [aml\_workspace\_ds\_users](#input\_aml\_workspace\_ds\_users)
+
+Description: List of user object ids to add to the AML Workspace DS group
+
+Type: `list(string)`
+
+Default: `[]`
+
+### <a name="input_aml_workspace_ml_operator_users"></a> [aml\_workspace\_ml\_operator\_users](#input\_aml\_workspace\_ml\_operator\_users)
+
+Description: List of user object ids to add to the AML Workspace ML Operator group
+
+Type: `list(string)`
+
+Default: `[]`
 
 ### <a name="input_azure_bastion_subnet_address_spaces"></a> [azure\_bastion\_subnet\_address\_spaces](#input\_azure\_bastion\_subnet\_address\_spaces)
 
@@ -338,6 +390,14 @@ map(object({
 
 Default: `{}`
 
+### <a name="input_sql_storage_external_users"></a> [sql\_storage\_external\_users](#input\_sql\_storage\_external\_users)
+
+Description: List of user object ids to add to the SQL storage external users group
+
+Type: `list(string)`
+
+Default: `[]`
+
 ### <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name)
 
 Description: The name of the Azure Storage Account. If not provided, a name will be generated.
@@ -345,6 +405,14 @@ Description: The name of the Azure Storage Account. If not provided, a name will
 Type: `string`
 
 Default: `""`
+
+### <a name="input_storage_mvnet_users"></a> [storage\_mvnet\_users](#input\_storage\_mvnet\_users)
+
+Description: List of user object ids to add to the storage mvnet users group
+
+Type: `list(string)`
+
+Default: `[]`
 
 ### <a name="input_tags"></a> [tags](#input\_tags)
 
