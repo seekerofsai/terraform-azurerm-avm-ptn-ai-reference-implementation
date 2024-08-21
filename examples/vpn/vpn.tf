@@ -1,3 +1,19 @@
+resource "tls_private_key" "vpn" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "local_sensitive_file" "vpn" {
+  filename = "vpn.key"
+  content  = tls_private_key.vpn.private_key_openssh
+}
+
+resource "local_file" "vpn" {
+  filename = "vpn.key.pub"
+  content  = tls_private_key.vpn.public_key_openssh
+}
+
+
 resource "azurerm_public_ip" "vpn" {
   allocation_method       = "Static"
   location                = azurerm_resource_group.example.location
@@ -35,7 +51,7 @@ resource "azurerm_linux_virtual_machine" "vpn" {
     storage_account_type = "Premium_LRS"
   }
   admin_ssh_key {
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = trimspace(tls_private_key.vpn.public_key_openssh)
     username   = "adminazure"
   }
   source_image_reference {

@@ -13,8 +13,6 @@ This example demonstrates how to set up an OpenVPN connection to access resource
 
 To use this example, ensure you have:
 
-- A folder `~/.ssh` containing your private key for VPN access.
-- A file `~/.ssh/id_rsa.pub` with your public key for VPN access.
 - Access to the internet or a local copy of an OpenVPN provisioning script.
 - An OpenVPN client installed on your machine.
 
@@ -39,6 +37,9 @@ Follow these steps to set up and connect to the VPN:
 
 4. **Connect to the VPN Box:**
    In the portal, locate the VPN VM `example-vpn-vm` and use Bastion to connect to it.
+
+   You should use the username `azureuser` and the SSH key that was generated during the terraform apply. the private key will be created in the same folder as the terraform files called `vpn.key`.
+
    ![Connecting to the VPN Box](./midia/bastion\_printscreen.png)
 
 5. **Install OpenVPN Server:**
@@ -67,6 +68,14 @@ terraform {
     random = {
       source  = "hashicorp/random"
       version = "~> 3.5"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.4"
     }
   }
 }
@@ -140,7 +149,11 @@ The following requirements are needed by this module:
 
 - <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.114.0, < 4.0.0)
 
+- <a name="requirement_local"></a> [local](#requirement\_local) (~> 2.4)
+
 - <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.5)
+
+- <a name="requirement_tls"></a> [tls](#requirement\_tls) (~> 4.0)
 
 ## Resources
 
@@ -150,8 +163,11 @@ The following resources are used by this module:
 - [azurerm_network_interface.vpn](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface) (resource)
 - [azurerm_public_ip.vpn](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) (resource)
 - [azurerm_resource_group.example](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) (resource)
+- [local_file.vpn](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) (resource)
+- [local_sensitive_file.vpn](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) (resource)
 - [random_integer.region_index](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) (resource)
 - [random_string.name](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) (resource)
+- [tls_private_key.vpn](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) (resource)
 
 <!-- markdownlint-disable MD013 -->
 ## Required Inputs

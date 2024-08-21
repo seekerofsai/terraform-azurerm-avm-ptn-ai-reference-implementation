@@ -12,8 +12,6 @@ This example demonstrates how to set up an OpenVPN connection to access resource
 
 To use this example, ensure you have:
 
-- A folder `~/.ssh` containing your private key for VPN access.
-- A file `~/.ssh/id_rsa.pub` with your public key for VPN access.
 - Access to the internet or a local copy of an OpenVPN provisioning script.
 - An OpenVPN client installed on your machine.
 
@@ -38,6 +36,9 @@ Follow these steps to set up and connect to the VPN:
 
 4. **Connect to the VPN Box:**
    In the portal, locate the VPN VM `example-vpn-vm` and use Bastion to connect to it.
+
+   You should use the username `azureuser` and the SSH key that was generated during the terraform apply. the private key will be created in the same folder as the terraform files called `vpn.key`.
+
    ![Connecting to the VPN Box](./midia/bastion_printscreen.png)
 
 5. **Install OpenVPN Server:**
