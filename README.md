@@ -335,6 +335,17 @@ Type: `string`
 
 Default: `""`
 
+### <a name="input_kind"></a> [kind](#input\_kind)
+
+Description: The kind of the resource. This is used to determine the type of the resource. If not specified, the resource will be created as a standard resource.  
+Possible values are:
+- `Default` - The resource will be created as a standard Azure Machine Learning resource.
+- `hub` - The resource will be created as an Azure AI Hub resource.
+
+Type: `string`
+
+Default: `"Default"`
+
 ### <a name="input_lock"></a> [lock](#input\_lock)
 
 Description: Controls the Resource Lock configuration for this resource. The following properties can be specified:
@@ -681,6 +692,12 @@ Version: ~> 0.1
 Source: Azure/avm-res-network-natgateway/azurerm
 
 Version: 0.2.0
+
+### <a name="module_openai"></a> [openai](#module\_openai)
+
+Source: Azure/openai/azurerm
+
+Version: ~>0.1.3
 
 ### <a name="module_pe_network_security_group"></a> [pe\_network\_security\_group](#module\_pe\_network\_security\_group)
 

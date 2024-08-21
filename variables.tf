@@ -157,6 +157,17 @@ variable "key_vault_name" {
   description = "The name of the Azure Key Vault. If not provided, a name will be generated."
 }
 
+variable "kind" {
+  type        = string
+  default     = "Default"
+  description = <<DESCRIPTION
+The kind of the resource. This is used to determine the type of the resource. If not specified, the resource will be created as a standard resource.
+Possible values are:
+- `Default` - The resource will be created as a standard Azure Machine Learning resource.
+- `hub` - The resource will be created as an Azure AI Hub resource.
+DESCRIPTION
+}
+
 variable "lock" {
   type = object({
     kind = string

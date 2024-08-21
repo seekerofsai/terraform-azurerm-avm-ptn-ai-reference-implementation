@@ -32,6 +32,7 @@ module "aml" {
   version  = "0.1.2"
   location = var.location
   name     = local.machine_learning_workspace_name
+  kind     = var.kind
   resource_group = {
     id   = data.azurerm_resource_group.base.id
     name = data.azurerm_resource_group.base.name

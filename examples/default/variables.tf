@@ -21,3 +21,9 @@ variable "jumpbox" {
   }
   description = "This variable configures the jumpbox for this example"
 }
+
+variable "location" {
+  type        = string
+  default     = "uksouth"
+  description = "The location for the resources."
+}
