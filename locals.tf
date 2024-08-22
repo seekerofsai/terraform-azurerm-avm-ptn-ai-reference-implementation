@@ -13,6 +13,7 @@ locals {
   virtual_network_name                = length(var.virtual_network_name) > 0 ? var.virtual_network_name : replace("vnet${var.name}", "/[^a-zA-Z0-9-]/", "")
   vm_network_security_group_name      = length(var.vm_network_security_group.name) > 0 ? var.vm_network_security_group.name : replace("vm-nsg${var.name}", "/[^a-zA-Z0-9-]/", "")
 }
+
 # Diagnostic settings
 locals {
   diagnostic_settings = {

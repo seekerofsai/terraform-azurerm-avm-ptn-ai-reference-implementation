@@ -31,6 +31,14 @@ module "storage_account" {
   managed_identities = {
     system_assigned = true
   }
+
+  diagnostic_settings_blob  = local.diagnostic_settings
+  diagnostic_settings_table = local.diagnostic_settings
+  diagnostic_settings_queue = local.diagnostic_settings
+  diagnostic_settings_file  = local.diagnostic_settings
+
+
+
   tags = var.tags
 
   network_rules = {

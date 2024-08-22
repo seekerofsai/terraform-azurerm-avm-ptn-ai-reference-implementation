@@ -14,13 +14,9 @@
 
 locals {
   diag_setting_resources = {
-    aml           = { resource_id = module.aml.resource.id },
-    storage-blob  = { resource_id = format("%s%s", module.storage_account.resource.id, "/blobServices/default/") },
-    storage-table = { resource_id = format("%s%s", module.storage_account.resource.id, "/tableServices/default/") },
-    storage-file  = { resource_id = format("%s%s", module.storage_account.resource.id, "/fileServices/default/") },
-    storage-queue = { resource_id = format("%s%s", module.storage_account.resource.id, "/queueServices/default/") },
-    bastion       = { resource_id = module.azure_bastion.resource.id },
-    bastion-ip    = { resource_id = azurerm_public_ip.bastion_ip.id }
+    aml        = { resource_id = module.aml.resource.id },
+    bastion    = { resource_id = module.azure_bastion.resource.id },
+    bastion-ip = { resource_id = azurerm_public_ip.bastion_ip.id }
   }
 }
 
@@ -39,7 +35,7 @@ resource "azurerm_monitor_diagnostic_setting" "diag_setting_resources" {
   }
 }
 
-# Resources like the following, have specific categories for Logs/metrics, so they are implemented separately
+# Resources like the following, have specific conditions or categories for Logs/metrics, so they are implemented separately
 
 resource "azurerm_monitor_diagnostic_setting" "diag_setting_resource_storage" {
   name                       = local.diagnostic_settings.defaultDiagnosticSettings.name

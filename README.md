@@ -125,6 +125,7 @@ The following resources are used by this module:
 - [azuread_group_member.user_adlsgen_data_contrib](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
 - [azuread_group_member.user_sql_storage_external](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
 - [azuread_group_member.user_storage_mvnet](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
+- [azurerm_application_insights_workbook.avm_ootb_workbook](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights_workbook) (resource)
 - [azurerm_management_lock.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock) (resource)
 - [azurerm_monitor_diagnostic_setting.diag_setting_resource_storage](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) (resource)
 - [azurerm_monitor_diagnostic_setting.diag_setting_resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) (resource)
@@ -700,12 +701,6 @@ Version: ~> 0.1
 Source: Azure/avm-res-network-natgateway/azurerm
 
 Version: 0.2.0
-
-### <a name="module_openai"></a> [openai](#module\_openai)
-
-Source: Azure/openai/azurerm
-
-Version: ~>0.1.3
 
 ### <a name="module_pe_network_security_group"></a> [pe\_network\_security\_group](#module\_pe\_network\_security\_group)
 
