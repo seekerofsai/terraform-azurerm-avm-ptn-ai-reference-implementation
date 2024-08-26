@@ -12,6 +12,10 @@ The pattern module is designed to be modular and composable. The default deploym
 
 ![AI Reference Implementation Baseline Architecture](./media/ai-reference-implementation-architecture.png)
 
+## Architecture Design Record
+
+Refer to the [ADR](./adr.md)
+
 ### Key Features and Goals
 
 This AI Reference Implementation pattern module is designed to accelerate the deployment of AI solutions on Azure, while ensuring security, compliance, flexibility, and observability. The primary objectives and functionalities of this module include:

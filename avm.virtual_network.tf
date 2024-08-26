@@ -32,6 +32,9 @@ module "virtual_network" {
         id = module.vm_network_security_group.resource_id
       }
       service_endpoints = null
+      nat_gateway = var.explicit_outbound_method == "NAT" ? {
+        id = module.natgateway[0].resource_id
+      } : null
     }
   }
   address_space       = var.vnet_address_spaces

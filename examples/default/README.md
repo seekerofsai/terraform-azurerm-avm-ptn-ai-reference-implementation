@@ -16,7 +16,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.114.0, < 4.0.0"
+      version = ">= 3.114.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -84,7 +84,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.5)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.114.0, < 4.0.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 3.114.0)
 
 - <a name="requirement_random"></a> [random](#requirement\_random) (~> 3.5)
 
@@ -134,8 +134,8 @@ Default:
 ```json
 {
   "accelerated_networking_enabled": true,
-  "size": "Standard_D4as_v4",
-  "zone": 3
+  "size": "Standard_D4s_v3",
+  "zone": 1
 }
 ```
 
