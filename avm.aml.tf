@@ -9,6 +9,7 @@ module "private_dns_aml_api" {
       vnetid       = module.virtual_network.resource.id
     }
   }
+
   tags             = var.tags
   enable_telemetry = var.enable_telemetry
 }

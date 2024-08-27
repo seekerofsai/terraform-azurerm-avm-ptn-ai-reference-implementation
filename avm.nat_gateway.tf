@@ -11,11 +11,8 @@ module "natgateway" {
       name = "vm_subnet_gw_pip"
     }
   }
-
-  subnet_associations = {
-    virtual_machines = {
-      resource_id = module.virtual_network.subnets["virtual_machines"].resource_id
-    }
-  }
   count = var.explicit_outbound_method == "NAT" ? 1 : 0
+  tags  = var.tags
+  # for idempotency
+  zones = []
 }

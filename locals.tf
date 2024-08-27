@@ -1,6 +1,7 @@
 # Define resource names
 
 locals {
+  aisearch_name                       = length(var.aisearch_name) > 0 ? var.aisearch_name : replace("ais${var.name}", "/[^a-z0-9-]/", "")
   bastion_name                        = length(var.bastion_name) > 0 ? var.bastion_name : replace("ba-${var.name}", "/[^a-zA-Z0-9-]/", "")
   bastion_network_security_group_name = length(var.bastion_network_security_group_name) > 0 ? var.bastion_network_security_group_name : replace("ba-nsg${var.name}", "/[^a-zA-Z0-9-]/", "")
   container_registry_name             = length(var.container_registry_name) > 0 ? var.container_registry_name : replace("acr${var.name}", "/[^a-zA-Z0-9-]/", "")
@@ -12,7 +13,6 @@ locals {
   storage_account_name                = length(var.storage_account_name) > 0 ? var.storage_account_name : replace("sa${var.name}", "/[^a-zA-Z0-9-]/", "")
   virtual_network_name                = length(var.virtual_network_name) > 0 ? var.virtual_network_name : replace("vnet${var.name}", "/[^a-zA-Z0-9-]/", "")
   vm_network_security_group_name      = length(var.vm_network_security_group.name) > 0 ? var.vm_network_security_group.name : replace("vm-nsg${var.name}", "/[^a-zA-Z0-9-]/", "")
-  aisearch_name                       = length(var.aisearch_name) > 0 ? var.aisearch_name : replace("ais${var.name}", "/[^a-z0-9-]/", "")
 }
 
 # Diagnostic settings

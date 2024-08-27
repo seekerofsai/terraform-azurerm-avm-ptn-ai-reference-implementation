@@ -15,8 +15,8 @@ variable "jumpbox" {
     accelerated_networking_enabled = bool
   })
   default = {
-    size                           = "Standard_D4as_v4"
-    zone                           = 3
+    size                           = "Standard_D4s_v3"
+    zone                           = 1
     accelerated_networking_enabled = true
   }
   description = "This variable configures the jumpbox for this example"

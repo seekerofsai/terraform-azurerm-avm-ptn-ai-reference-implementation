@@ -133,6 +133,7 @@ The following resources are used by this module:
 - [azurerm_management_lock.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock) (resource)
 - [azurerm_monitor_diagnostic_setting.diag_setting_resource_storage](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) (resource)
 - [azurerm_monitor_diagnostic_setting.diag_setting_resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) (resource)
+- [azurerm_private_dns_a_record.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_a_record) (resource)
 - [azurerm_public_ip.bastion_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) (resource)
 - [azurerm_role_assignment.akv_secret_admin](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azurerm_role_assignment.aml_workspace_ds](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
@@ -190,6 +191,78 @@ Description: List of user object ids to add to the ADLSgen Data Contributor grou
 Type: `list(string)`
 
 Default: `[]`
+
+### <a name="input_aisearch_allowed_ips"></a> [aisearch\_allowed\_ips](#input\_aisearch\_allowed\_ips)
+
+Description: A list of IP addresses that are allowed to access the Azure Cognitive Search service.
+
+Type: `list(string)`
+
+Default: `[]`
+
+### <a name="input_aisearch_hosting_mode"></a> [aisearch\_hosting\_mode](#input\_aisearch\_hosting\_mode)
+
+Description: (Optional) Specifies the Hosting Mode, which allows for High Density partitions (that allow for up to 1000 indexes) should be supported. Possible values are `highDensity` or `default`. Defaults to `default`. Changing this forces a new Search Service to be created.
+
+Type: `string`
+
+Default: `null`
+
+### <a name="input_aisearch_local_authentication_enabled"></a> [aisearch\_local\_authentication\_enabled](#input\_aisearch\_local\_authentication\_enabled)
+
+Description: Controls whether or not local authentication is enabled for the Azure Cognitive Search service.
+
+Type: `bool`
+
+Default: `false`
+
+### <a name="input_aisearch_name"></a> [aisearch\_name](#input\_aisearch\_name)
+
+Description: The name of the Azure Cognitive Search service. If not provided, a name will be generated.
+
+Type: `string`
+
+Default: `""`
+
+### <a name="input_aisearch_partition_count"></a> [aisearch\_partition\_count](#input\_aisearch\_partition\_count)
+
+Description: Partitions allow for scaling of document count as well as faster indexing by sharding your index over multiple search units.
+
+Type: `number`
+
+Default: `1`
+
+### <a name="input_aisearch_public_network_access_enabled"></a> [aisearch\_public\_network\_access\_enabled](#input\_aisearch\_public\_network\_access\_enabled)
+
+Description: Controls whether or not the Azure Cognitive Search service is accessible from the public internet.
+
+Type: `bool`
+
+Default: `false`
+
+### <a name="input_aisearch_replica_count"></a> [aisearch\_replica\_count](#input\_aisearch\_replica\_count)
+
+Description: Replicas distribute search workloads across the service. You need at least two replicas to support high availability of query workloads (not applicable to the free tier).
+
+Type: `number`
+
+Default: `1`
+
+### <a name="input_aisearch_semantic_search_sku"></a> [aisearch\_semantic\_search\_sku](#input\_aisearch\_semantic\_search\_sku)
+
+Description: (Optional) Specifies the Semantic Search SKU which should be used for this Search Service. Possible values include `free` and `standard`.
+
+Type: `string`
+
+Default: `null`
+
+### <a name="input_aisearch_sku"></a> [aisearch\_sku](#input\_aisearch\_sku)
+
+Description: The SKU of the Azure Cognitive Search service.
+
+Type: `string`
+
+Default: `"basic"`
 
 ### <a name="input_akv_secret_admin_users"></a> [akv\_secret\_admin\_users](#input\_akv\_secret\_admin\_users)
 
@@ -658,6 +731,12 @@ Description: The Azure resource id of the resource.
 
 The following Modules are called:
 
+### <a name="module_aisearch"></a> [aisearch](#module\_aisearch)
+
+Source: Azure/avm-res-search-searchservice/azurerm
+
+Version: 0.1.1
+
 ### <a name="module_aml"></a> [aml](#module\_aml)
 
 Source: Azure/avm-res-machinelearningservices-workspace/azurerm
@@ -711,6 +790,12 @@ Version: 0.2.0
 Source: Azure/avm-res-network-networksecuritygroup/azurerm
 
 Version: ~> 0.2.0
+
+### <a name="module_private_dns_aisearch"></a> [private\_dns\_aisearch](#module\_private\_dns\_aisearch)
+
+Source: Azure/avm-res-network-privatednszone/azurerm
+
+Version: ~> 0.1.1
 
 ### <a name="module_private_dns_aml_api"></a> [private\_dns\_aml\_api](#module\_private\_dns\_aml\_api)
 
