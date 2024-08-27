@@ -399,16 +399,17 @@ variable "vnet_address_spaces" {
   description = "The address space that is used the virtual network"
 }
 
-variable "aisearch_sku" {
-  type        = string
-  default     = "Basic"
-  description = "The SKU of the Azure Cognitive Search service."
-}
 
 variable "aisearch_name" {
   type        = string
   default     = ""
   description = "The name of the Azure Cognitive Search service. If not provided, a name will be generated."
+}
+
+variable "aisearch_sku" {
+  type        = string
+  default     = "Basic"
+  description = "The SKU of the Azure Cognitive Search service."
 }
 
 variable "aisearch_public_network_access_enabled" {
@@ -429,33 +430,33 @@ variable "aisearch_local_authentication_enabled" {
   description = "Controls whether or not local authentication is enabled for the Azure Cognitive Search service."
 }
 
-variable "hosting_mode" {
+variable "aisearch_hosting_mode" {
   type        = string
   default     = null
   description = "(Optional) Specifies the Hosting Mode, which allows for High Density partitions (that allow for up to 1000 indexes) should be supported. Possible values are `highDensity` or `default`. Defaults to `default`. Changing this forces a new Search Service to be created."
 }
 
-variable "replica_count" {
+variable "aisearch_replica_count" {
   type        = number
   description = "Replicas distribute search workloads across the service. You need at least two replicas to support high availability of query workloads (not applicable to the free tier)."
   default     = 1
   validation {
-    condition     = var.replica_count >= 1 && var.replica_count <= 12
+    condition     = var.aisearch_replica_count >= 1 && var.aisearch_replica_count <= 12
     error_message = "The replica_count must be between 1 and 12."
   }
 }
 
-variable "partition_count" {
+variable "aisearch_partition_count" {
   type        = number
   description = "Partitions allow for scaling of document count as well as faster indexing by sharding your index over multiple search units."
   default     = 1
   validation {
-    condition     = contains([1, 2, 3, 4, 6, 12], var.partition_count)
+    condition     = contains([1, 2, 3, 4, 6, 12], var.aisearch_partition_count)
     error_message = "The partition_count must be one of the following values: 1, 2, 3, 4, 6, 12."
   }
 }
 
-variable "semantic_search_sku" {
+variable "aisearch_semantic_search_sku" {
   type        = string
   default     = null
   description = "(Optional) Specifies the Semantic Search SKU which should be used for this Search Service. Possible values include `free` and `standard`."
