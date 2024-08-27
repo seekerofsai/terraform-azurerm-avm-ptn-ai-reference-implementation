@@ -61,7 +61,6 @@ module "test" {
   name                = random_string.name.id
   resource_group_name = azurerm_resource_group.this.name
   enable_telemetry    = var.enable_telemetry
-  aisearch_create     = true
   jumpbox = {
     create                         = true
     size                           = var.jumpbox.size
