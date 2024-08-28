@@ -226,7 +226,7 @@ Default: `""`
 
 ### <a name="input_aisearch_partition_count"></a> [aisearch\_partition\_count](#input\_aisearch\_partition\_count)
 
-Description: Number of Paritions. Partitions allow for scaling of document count as well as faster indexing by sharding your index over multiple search units.
+Description: Number of Paritions.
 
 Type: `number`
 
@@ -242,7 +242,7 @@ Default: `false`
 
 ### <a name="input_aisearch_replica_count"></a> [aisearch\_replica\_count](#input\_aisearch\_replica\_count)
 
-Description: Replicas distribute search workloads across the service. You need at least two replicas to support high availability of query workloads (not applicable to the free tier).
+Description: Number of Replicas.
 
 Type: `number`
 
@@ -250,7 +250,7 @@ Default: `1`
 
 ### <a name="input_aisearch_semantic_search_sku"></a> [aisearch\_semantic\_search\_sku](#input\_aisearch\_semantic\_search\_sku)
 
-Description: (Optional) Specifies the Semantic Search SKU which should be used for this Search Service. Possible values include `free` and `standard`.
+Description: (Optional) Specifies the Semantic Search SKU which should be used for this AI Search Service. Possible values include `free` and `standard`.
 
 Type: `string`
 
