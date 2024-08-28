@@ -29,7 +29,7 @@ variable "adlsgen_data_contrib_users" {
 variable "aisearch_allowed_ips" {
   type        = list(string)
   default     = []
-  description = "A list of IP addresses that are allowed to access the Azure Cognitive Search service."
+  description = "A list of IP addresses that are allowed to access the AI Search service."
 }
 
 variable "aisearch_hosting_mode" {
@@ -41,19 +41,19 @@ variable "aisearch_hosting_mode" {
 variable "aisearch_local_authentication_enabled" {
   type        = bool
   default     = false
-  description = "Controls whether or not local authentication is enabled for the Azure Cognitive Search service."
+  description = "Controls whether or not local authentication is enabled for the AI Search service."
 }
 
 variable "aisearch_name" {
   type        = string
   default     = ""
-  description = "The name of the Azure Cognitive Search service. If not provided, a name will be generated."
+  description = "The name of the AI Search service. If not provided, a name will be generated."
 }
 
 variable "aisearch_partition_count" {
   type        = number
   default     = 1
-  description = "Partitions allow for scaling of document count as well as faster indexing by sharding your index over multiple search units."
+  description = "Number of Paritions."
 
   validation {
     condition     = contains([1, 2, 3, 4, 6, 12], var.aisearch_partition_count)
@@ -64,13 +64,13 @@ variable "aisearch_partition_count" {
 variable "aisearch_public_network_access_enabled" {
   type        = bool
   default     = false
-  description = "Controls whether or not the Azure Cognitive Search service is accessible from the public internet."
+  description = "Controls whether or not the AI Search service is accessible from the public internet."
 }
 
 variable "aisearch_replica_count" {
   type        = number
   default     = 1
-  description = "Replicas distribute search workloads across the service. You need at least two replicas to support high availability of query workloads (not applicable to the free tier)."
+  description = "Number of Replicas."
 
   validation {
     condition     = var.aisearch_replica_count >= 1 && var.aisearch_replica_count <= 12
@@ -80,14 +80,14 @@ variable "aisearch_replica_count" {
 
 variable "aisearch_semantic_search_sku" {
   type        = string
-  default     = null
-  description = "(Optional) Specifies the Semantic Search SKU which should be used for this Search Service. Possible values include `free` and `standard`."
+  default     = "free"
+  description = "(Optional) Specifies the Semantic Search SKU which should be used for this AI Search Service. Possible values include `free` and `standard`."
 }
 
 variable "aisearch_sku" {
   type        = string
   default     = "basic"
-  description = "The SKU of the Azure Cognitive Search service."
+  description = "The SKU of the AI Search service."
 }
 
 variable "akv_secret_admin_users" {

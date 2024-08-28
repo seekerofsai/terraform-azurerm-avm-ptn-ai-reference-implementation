@@ -194,7 +194,7 @@ Default: `[]`
 
 ### <a name="input_aisearch_allowed_ips"></a> [aisearch\_allowed\_ips](#input\_aisearch\_allowed\_ips)
 
-Description: A list of IP addresses that are allowed to access the Azure Cognitive Search service.
+Description: A list of IP addresses that are allowed to access the AI Search service.
 
 Type: `list(string)`
 
@@ -210,7 +210,7 @@ Default: `null`
 
 ### <a name="input_aisearch_local_authentication_enabled"></a> [aisearch\_local\_authentication\_enabled](#input\_aisearch\_local\_authentication\_enabled)
 
-Description: Controls whether or not local authentication is enabled for the Azure Cognitive Search service.
+Description: Controls whether or not local authentication is enabled for the AI Search service.
 
 Type: `bool`
 
@@ -218,7 +218,7 @@ Default: `false`
 
 ### <a name="input_aisearch_name"></a> [aisearch\_name](#input\_aisearch\_name)
 
-Description: The name of the Azure Cognitive Search service. If not provided, a name will be generated.
+Description: The name of the AI Search service. If not provided, a name will be generated.
 
 Type: `string`
 
@@ -226,7 +226,7 @@ Default: `""`
 
 ### <a name="input_aisearch_partition_count"></a> [aisearch\_partition\_count](#input\_aisearch\_partition\_count)
 
-Description: Partitions allow for scaling of document count as well as faster indexing by sharding your index over multiple search units.
+Description: Number of Paritions. Partitions allow for scaling of document count as well as faster indexing by sharding your index over multiple search units.
 
 Type: `number`
 
@@ -234,7 +234,7 @@ Default: `1`
 
 ### <a name="input_aisearch_public_network_access_enabled"></a> [aisearch\_public\_network\_access\_enabled](#input\_aisearch\_public\_network\_access\_enabled)
 
-Description: Controls whether or not the Azure Cognitive Search service is accessible from the public internet.
+Description: Controls whether or not the AI Search service is accessible from the public internet.
 
 Type: `bool`
 
@@ -254,11 +254,11 @@ Description: (Optional) Specifies the Semantic Search SKU which should be used f
 
 Type: `string`
 
-Default: `null`
+Default: `"free"`
 
 ### <a name="input_aisearch_sku"></a> [aisearch\_sku](#input\_aisearch\_sku)
 
-Description: The SKU of the Azure Cognitive Search service.
+Description: The SKU of the AI Search service.
 
 Type: `string`
 
